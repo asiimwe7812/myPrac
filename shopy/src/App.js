@@ -1,74 +1,42 @@
-import React from 'react';
-import data from './data';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen.js";
+import ProductScreen from "./screens/ProductScreen.js";
+import Product from "./components/Product.js";
 
 function App() {
   return (
-    <div className="grid-container">
-    <header className="row">
-        <div>
-            <a className="brand" href="index.html">Shopy</a>
-        </div>
-        <div>
-            <a href="cart.html">Cart</a>
-            <a href="signin.html">Sign In</a>
-        </div>
-    
-    
-    
-    </header>
-    <main>
-        <div>
-      <div className="row center">
-          {
-              data.products.map((product)=>( <div key={product._id} className="card">
-              <a href={`/product/${product._id}`}>
-                  <img  className="medium" src="{product.image}"  alt={product.name}></img>
-      
-              </a>
-              <div className="cart-body">
-                  <a href="product.html">
-                      <h2>{product.name}</h2>
-                  </a>
-                  <div className="rating">
-                      <span>
-                          <i className="fa fa-star"></i>
-                      </span>
-                      <span>
-                          <i className="fa fa-star"></i>
-                      </span>
-                      <span>
-                          <i className="fa fa-star"></i>
-                      </span>
-                      <span>
-                          <i className="fa fa-star"></i>
-                      </span>
-                      <span>
-                          <i className="fa fa-star"></i>
-                      </span>
-                  </div>
-                  <div className="price">
-                    Shs {product.price}
-                  </div>
-              </div>
+    <BrowserRouter>
+      <div className="grid-container">
+        <header className="row">
+          <div>
+            <a className="brand" href="/">
+              Shopy
+            </a>
           </div>
-          
-          ))
-          }
-       
-       </div>
-        
+          <div>
+            <a href="/cart">Cart</a>
+            <a href="/signin">Sign In</a>
+          </div>
+        </header>
+        <main>
+          <Routes>
+            <Route
+              path="/product/:slug"
+              element={<ProductScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/"
+              element={<HomeScreen />}
+              exact
+              key={Product.id}
+            ></Route>
+          </Routes>
+        </main>
+        <footer className="row center">All right reserved</footer>
       </div>
-    </main>
-    
-    
-    <footer className="row center">
-        All rights reserved 
-    
-    </footer>
-    
-        </div>
-        
-  
+    </BrowserRouter>
   );
 }
 
