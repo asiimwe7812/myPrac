@@ -165,6 +165,16 @@ img.large{
 .error{
   color: #a20;
 }
+.alert{
+  padding: 1rem;
+  border-radius: 0.1rem solid transparent;
+  border: 0.5rem;
+}
+.alert-info{
+  color: blue;
+  background-color: #f8f8f8;
+}
+
 
 
 
